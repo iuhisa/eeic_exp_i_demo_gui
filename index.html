@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <link rel="stylesheet" type="text/css" href="./css/top.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/functions.js"></script>
-    <title>NightCode</title>
-  </head>
-  <body>
-      <button id="button-start">start</button>
-      <button id="button-stop">stop</button>
-      <p>ボイスチェンジの強度<input id="input-strength-voice_change"/></p>
-      <button id="button-voice_change">確定</button>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <link rel="stylesheet" type="text/css" href="./css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="./js/functions.js"></script>
+        <title>NightCode</title>
+    </head>
+    <body>
+        <div id="output-area">
+            <div id="std_output-area"></div>
+            <p id="dst-info"><span>IP : ***.***.***.***</span><span>PORT : *****</span></p>
+        </div>
+        <div id="setting-area">
+            <div id="start_stop-area">
+                <button id="button-start">start</button>
+                <button id="button-stop">stop</button>
+            </div>
+            <div id="dst_info-area">
+                <p>
+                    <label for="input-dst_ip">通信先IPアドレス</label>
+                    <input id="input-dst_ip" type="text" placeholder="***.***.***.***"/>
+                </p>
+                <p>
+                    <label for="input-dst_port">通信先ポート</label>
+                    <input id="input-dst_port" type="number" placeholder="50000"/>
+                </p>
+                <button class="button-change" id="button-dst_info">変更</button>
+            </div>
+            <div id="voice_change-area">
+                <p>
+                    <label for="input-strength-voice_change">ボイスチェンジの強さ</label>
+                    <input id="input-strength-voice_change" type="number" min="0" max="50" placeholder="0"/>
+                    <button class="button-change" id="button-voice_change">変更</button>
+                </p>
+            </div>
+        </div>
+    </body>
 </html>
