@@ -5,6 +5,7 @@ const psTree = require('ps-tree')
 $(function () {
     var ip = "";
     var port = "";
+    var shift_f = "";
     var cp_client = null;
     var started = false;
 
@@ -12,15 +13,18 @@ $(function () {
         if(started) {
             return
         }
-        started = true
         if(ip == ""){
             $("#std_output-area").html("ipアドレスを入力してください");
         } else if(port == ""){
             $("#std_output-area").html("ポートを入力してください");
+        } else if(shift_f == ""){
+            $("#std_output-area").html("シフト周波数を入力してください");
         } else {
+            started = true
             //cp_client = childProcess.exec(`./js/src/run_client.sh ${ip} ${port}`, (error, stdout, stderr) => {
             console.log(__dirname)
-            cp_client = childProcess.exec(`rec -t raw -b 16 -c 1 -e s -r 44100 - | ` + __dirname + `/js/src/clientsfu ${ip} ${port} | play -t raw -b 16 -c 1 -e s -r 44100 -`, (error, stdout, stderr) => {
+            //cp_client = childProcess.exec(`rec -t raw -b 16 -c 1 -e s -r 44100 - | ` + __dirname + `/js/src/clientsfu ${ip} ${port} ${shift_f} | play -t raw -b 16 -c 1 -e s -r 44100 -`, (error, stdout, stderr) => {
+            cp_client = childProcess.exec(`rec -t raw -b 16 -c 1 -e s -r 44100 - | ` + __dirname + `/js/src/clientsfu ${ip} ${port} ${shift_f} | play -t raw -b 16 -c 1 -e s -r 44100 -`, (error, stdout, stderr) => {
                 if(error) {
                     $("#std_output-area").html(error);
                     return
@@ -52,7 +56,8 @@ $(function () {
     $('#button-dst_info').on('click', function () {
         ip = $("#input-dst_ip").val().toString();
         port = $("#input-dst_port").val().toString();
-        $("#dst-info").html(`<span>IP : ${ip != "" ? ip : "***.***.***.***"}</span><span>PORT : ${port != "" ? port : "*****"}</span>`)
+        shift_f = $("#input-shift_f").val().toString();
+        $("#dst-info").html(`<span>IP : ${ip != "" ? ip : "***.***.***.***"}</span><span>PORT : ${port != "" ? port : "*****"}</span><span>シフト周波数 : ${shift_f != "" ? shift_f : "*****"}</span>`)
     });
 
     $('#button-stop').on('click', function () {

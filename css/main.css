@@ -46,7 +46,7 @@ button:active {
     margin: 10px;
 }
 
-#dst-info span:nth-child(2) {
+#dst-info span:nth-child(n+2) {
     margin-left: 20px;
 }
 
@@ -70,7 +70,7 @@ button:active {
     background-color: rgb(122, 120, 120);
 }
 
-.button-change {
+.button-change:hover {
     background-color: dimgray;
 }
 
@@ -107,8 +107,4 @@ button:active {
     display: flex;
     flex-flow: column;
     row-gap: 5px;
-}
-
-#voice_change-area {
-    text-align: center;
 }
