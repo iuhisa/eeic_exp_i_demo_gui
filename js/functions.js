@@ -23,8 +23,9 @@ $(function () {
             started = true
             //cp_client = childProcess.exec(`./js/src/run_client.sh ${ip} ${port}`, (error, stdout, stderr) => {
             console.log(__dirname)
+            //rec --buffer 192 -t raw -b 16 -c 1 -e s -r 3000 - | ./build/multiclient $1 $2 $3 | play --buffer 192  -t raw -b 16 -c 1 -e s -r 3000 -
             //cp_client = childProcess.exec(`rec -t raw -b 16 -c 1 -e s -r 44100 - | ` + __dirname + `/js/src/clientsfu ${ip} ${port} ${shift_f} | play -t raw -b 16 -c 1 -e s -r 44100 -`, (error, stdout, stderr) => {
-            cp_client = childProcess.exec(`rec -t raw -b 16 -c 1 -e s -r 44100 - | ` + __dirname + `/js/src/clientsfu ${ip} ${port} ${shift_f} | play -t raw -b 16 -c 1 -e s -r 44100 -`, (error, stdout, stderr) => {
+            cp_client = childProcess.exec(`rec --buffer 192 -t raw -b 16 -c 1 -e s -r 3000 - | /home/denjo/ドキュメント/GitHub/eeic_exp_i_demo/build/multiclient ${ip} ${port} ${shift_f} | play --buffer 192  -t raw -b 16 -c 1 -e s -r 3000 -`, (error, stdout, stderr) => {
                 if(error) {
                     $("#std_output-area").html(error);
                     return
